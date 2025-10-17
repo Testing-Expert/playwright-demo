@@ -1,4 +1,5 @@
-name: Playwright Test Automation
+name: Playwright Test Automation - Chromium Only
+
 on:
   push:
     branches: [main]
@@ -10,23 +11,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout repository code
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Step 2: Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
+      # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
 
+      # Step 4: Install Playwright Browsers (Chromium included)
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: npx playwright install chromium
 
-      - name: Run Playwright tests in Chrome (headless)
+      # Step 5: Run Playwright tests ONLY in Chromium (headless)
+      - name: Run Playwright tests in Chromium
         run: npx playwright test --project=chromium --retries=2 --reporter=html
 
+      # Step 6: Upload Playwright HTML report
       - name: Upload Playwright report
         uses: actions/upload-artifact@v4
         with:

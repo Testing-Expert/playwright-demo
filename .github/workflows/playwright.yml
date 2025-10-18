@@ -1,10 +1,12 @@
 name: Playwright Test Automation - Chromium Only
 
+# Trigger this workflow on push or pull request to main branch
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   test:
@@ -25,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Install Playwright Browsers (Chromium included)
+      # Step 4: Install Playwright Browsers (Chromium only)
       - name: Install Playwright Browsers
         run: npx playwright install chromium
 

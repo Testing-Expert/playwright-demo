@@ -40,6 +40,7 @@ const{test, expect} =require('@playwright/test')
   await page.locator('button[onclick="logIn()"]').click()
 
   await expect(page.locator('#nameofuser')).toHaveText('Welcome pavanol')
+  await page.waitForTimeout(3000)
 })
 
 

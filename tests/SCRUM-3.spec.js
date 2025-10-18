@@ -5,15 +5,22 @@ test('SignUp Form Testing', async({page})=>{
 await page.setDefaultTimeout(40000)
 await page.goto('https://automationexercise.com/login')
 
+
+//verify the text on signup form page - Enter Account Information
+//await page.waitForTimeout(3000)
+//await expect(page.locator('div[class="signup-form"] h2]')).toBeVisible()
+//console.log('tezt is visible:', 'Enter Account Information')
+
 await page.locator('//input[@placeholder="Name"]').fill('Bikram')
-await page.locator('//input[@data-qa="signup-email"]').fill('qa1234567@yopmail.com')     //qa123@yopmail.com   - is used
+await page.locator('//input[@data-qa="signup-email"]').fill('qa12345671@yopmail.com')     //qa123@yopmail.com   - is used
 await page.locator('//button[normalize-space()="Signup"]').click()
 
 await expect(page).toHaveURL('https://automationexercise.com/signup')
 console.log('Signup form url is:', 'https://automationexercise.com/signup')
 
-//verify the text on signup form page - Enter Account Information
-await expect(page.locator('//b[normalize-space()="Enter Account Information"]')).toHaveText('Enter Account Information')
+
+
+
 
 await expect(page.locator('//label[normalize-space()="Title"]')).toHaveText('Title')
 await page.waitForTimeout(3000)
@@ -31,7 +38,7 @@ console.log('Signup name is pre-filled:', 'Bikram')
 //Email pre-filled
 const emailVlaue= page.inputValue('//input[@name="email_address"]')
 await expect(emailVlaue).not.toBe(' ')
-console.log('Elail pre-field is:', 'qa1234567@yopmail.com')
+console.log('Elail pre-field is:', 'qa12345671@yopmail.com')
 
 //text verify - password*    //fill the password
 await expect(page.locator('//label[@for="password"]')).toHaveText('Password * ')

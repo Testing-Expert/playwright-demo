@@ -12,7 +12,7 @@ await page.goto('https://automationexercise.com/login')
 //console.log('tezt is visible:', 'Enter Account Information')
 
 await page.locator('//input[@placeholder="Name"]').fill('Bikram')
-//await page.locator('//input[@data-qa="signup-email"]').fill('qa112@yopmail.com')     //qa123@yopmail.com   - is used
+
 //USING RANDOM EMAIL GENERATION
 const randomEmail = `qa${Date.now()}@yopmail.com`;
 await page.locator('//input[@data-qa="signup-email"]').fill(randomEmail)
@@ -27,8 +27,9 @@ console.log('Signup form url is:', 'https://automationexercise.com/signup')
 
 
 
-await expect(page.locator('//label[normalize-space()="Title"]')).toHaveText('Title')
-await page.waitForTimeout(3000)
+await page.waitForSelector('//label[normalize-space()="Title"]', { timeout: 10000 });
+await expect(page.locator('//label[normalize-space()="Title"]')).toHaveText('Title');
+console.log('Title label is:', 'Title')
 
 
 await page.locator('#id_gender1').click()

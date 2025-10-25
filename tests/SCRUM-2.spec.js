@@ -31,7 +31,13 @@ console.log('Email Filled Placeholder is:', 'Email Address')
 
 // name and email filed fill with details
 await page.locator('//input[@placeholder="Name"]').fill('Bikram')
-await page.locator('//input[@data-qa="signup-email"]').fill('qa123@yopmail.com')
+console.log('Using name:', 'Bikram')
+
+//Random email generate
+const randomEmail = `qa${Date.now()}@yopmail.com`;
+await page.locator('//input[@data-qa="signup-email"]').fill(randomEmail);
+console.log('Using random email:', randomEmail)
+
 await page.waitForTimeout(3000)
 
 //click on Login button 

@@ -12,7 +12,12 @@ await page.goto('https://automationexercise.com/login')
 //console.log('tezt is visible:', 'Enter Account Information')
 
 await page.locator('//input[@placeholder="Name"]').fill('Bikram')
-await page.locator('//input[@data-qa="signup-email"]').fill('qa12345671@yopmail.com')     //qa123@yopmail.com   - is used
+//await page.locator('//input[@data-qa="signup-email"]').fill('qa112@yopmail.com')     //qa123@yopmail.com   - is used
+//USING RANDOM EMAIL GENERATION
+const randomEmail = `qa${Date.now()}@yopmail.com`;
+await page.locator('//input[@data-qa="signup-email"]').fill(randomEmail)
+console.log('Using email:', randomEmail)
+
 await page.locator('//button[normalize-space()="Signup"]').click()
 
 await expect(page).toHaveURL('https://automationexercise.com/signup')
@@ -38,7 +43,7 @@ console.log('Signup name is pre-filled:', 'Bikram')
 //Email pre-filled
 const emailVlaue= page.inputValue('//input[@name="email_address"]')
 await expect(emailVlaue).not.toBe(' ')
-console.log('Elail pre-field is:', 'qa12345671@yopmail.com')
+console.log('Elail pre-field is:', randomEmail)
 
 //text verify - password*    //fill the password
 await expect(page.locator('//label[@for="password"]')).toHaveText('Password * ')
